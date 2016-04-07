@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from rest_framework import generics
 
 def home(request):
-    return HttpResponse("Welcome to Joy!")
+    return HttpResponse("Welcome to Joy 2!")
 
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
