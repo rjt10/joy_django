@@ -3,8 +3,13 @@ from joy.serializers import UserSerializer, GroupSerializer
 from django.http import HttpResponse
 from rest_framework import generics
 
+import logging
+logger = logging.getLogger(__name__)
+
 def home(request):
-    return HttpResponse("Welcome to Joy 2!")
+    logger.debug("it's a deebug msg")
+    return HttpResponse("Welcome to Joy 4!")
+
 
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
