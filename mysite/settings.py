@@ -123,7 +123,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': 'var/logs/mysite.log',
+            'filename': '/tmp/mysite-joy.log',
             'formatter': 'verbose'
         },
     },
