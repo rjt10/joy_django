@@ -7,9 +7,11 @@ import logging
 logger = logging.getLogger(__name__)
 
 def home(request):
-    logger.debug("it's a deebug msg")
     return HttpResponse("Welcome to Joy 4!")
 
+def magic(request):
+    logger.debug("it's a magic msg")
+    return HttpResponse("Magic happen here.")
 
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
