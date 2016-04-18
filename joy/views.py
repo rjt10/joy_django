@@ -11,7 +11,7 @@ def home(request):
 
 def magic(request):
     logger.debug("it's a magic msg")
-    return HttpResponse("Magic happen here.")
+    return HttpResponse("Magic_happen_here.")
 
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
