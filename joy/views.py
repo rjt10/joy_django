@@ -17,8 +17,6 @@ def home(request):
 def webhook(request):
     logger.debug("deebug: request is: " + str(request))
     logger.debug("deebug: request body is: " + str(request.body))
-    logger.debug("deebug: request json body is: " + str(request.json_body))
-    logger.debug("deebug: request.GET is: " + str(request.GET))
 
     body_unicode = request.body.decode('utf-8')
     body = json.loads(body_unicode)
