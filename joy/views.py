@@ -10,8 +10,12 @@ def home(request):
     return HttpResponse("Welcome to Joy 4!")
 
 def webhook(request):
-    logger.debug("the webhook request is: " + str(request))
-    return HttpResponse("webhook happen here.")
+    
+    logger.debug("deebug: the webhook request is: " + str(request.GET))
+    challengeValue = request.GET['hub.challenge']
+    for k, v in request.GET.items():
+        logger.debug("deebug: k=" + str(k) + ", v=" + str(v))
+    return HttpResponse(challengeValue)
 
 def magic(request):
     logger.debug("it's a magic msg")
