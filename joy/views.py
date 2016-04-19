@@ -14,7 +14,7 @@ def home(request):
 @csrf_exempt
 def webhook(request):
     logger.debug("deebug: request is: " + str(request))
-    logger.debug("deebug: request body is: " + request.body)
+    logger.debug("deebug: request body is: " + str(request.body))
     logger.debug("deebug: request.GET is: " + str(request.GET))
     for k, v in request.GET.items():
         logger.debug("deebug: GET k=" + str(k) + ", v=" + str(v))
