@@ -30,7 +30,6 @@ ALLOWED_HOSTS = [
     'localhost',
     'www.petallabs.com',
     '.petallabs.com',
-    '52.22.30.210',
     'joy-django-dev.us-east-1.elasticbeanstalk.com',
     'joy-dev.us-west-2.elasticbeanstalk.com',
 ]

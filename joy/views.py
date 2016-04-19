@@ -15,12 +15,8 @@ def home(request):
 def webhook(request):
     logger.debug("deebug: request is: " + str(request))
     logger.debug("deebug: request body is: " + str(request.body))
+    logger.debug("deebug: request json body is: " + str(request.json_body))
     logger.debug("deebug: request.GET is: " + str(request.GET))
-    for k, v in request.GET.items():
-        logger.debug("deebug: GET k=" + str(k) + ", v=" + str(v))
-    logger.debug("deebug: request.POST is: " + str(request.POST))
-    for k, v in request.POST.items():
-        logger.debug("deebug: POST k=" + str(k) + ", v=" + str(v))
     return HttpResponse('ok')
 
 def magic(request):
