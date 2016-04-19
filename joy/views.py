@@ -1,4 +1,4 @@
-from django.views.decorators.csrf import csrf_exempt
+#from django.views.decorators.csrf import csrf_exempt
 
 from joy.models import User, Group
 from joy.serializers import UserSerializer, GroupSerializer
@@ -11,8 +11,8 @@ logger = logging.getLogger(__name__)
 def home(request):
     return HttpResponse("Welcome to Joy 4!")
 
-@csrf_exempt
 def webhook(request):
+    logger.debug("deebug: request is: " + str(request))
     logger.debug("deebug: request.GET is: " + str(request.GET))
     for k, v in request.GET.items():
         logger.debug("deebug: GET k=" + str(k) + ", v=" + str(v))
