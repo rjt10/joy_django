@@ -10,8 +10,8 @@ def home(request):
     return HttpResponse("Welcome to Joy 4!")
 
 def webhook(request):
-    logger.debug("the webhook request is: " + request)
-    return HttpResponse("Magic happen here.")
+    logger.debug("the webhook request is: " + str(request))
+    return HttpResponse("webhook happen here.")
 
 def magic(request):
     logger.debug("it's a magic msg")
