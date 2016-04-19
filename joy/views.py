@@ -5,7 +5,9 @@ from joy.serializers import UserSerializer, GroupSerializer
 from django.http import HttpResponse
 from rest_framework import generics
 
+import json
 import logging
+
 logger = logging.getLogger(__name__)
 
 def home(request):
@@ -17,6 +19,12 @@ def webhook(request):
     logger.debug("deebug: request body is: " + str(request.body))
     logger.debug("deebug: request json body is: " + str(request.json_body))
     logger.debug("deebug: request.GET is: " + str(request.GET))
+
+    body_unicode = request.body.decode('utf-8')
+    body = json.loads(body_unicode)
+    entry = body['entry']
+    logger.debug("deebug: entry=" + str(entry))
+
     return HttpResponse('ok')
 
 def magic(request):
