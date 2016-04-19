@@ -1,3 +1,5 @@
+from django.views.decorators.csrf import csrf_exempt
+
 from joy.models import User, Group
 from joy.serializers import UserSerializer, GroupSerializer
 from django.http import HttpResponse
@@ -9,13 +11,15 @@ logger = logging.getLogger(__name__)
 def home(request):
     return HttpResponse("Welcome to Joy 4!")
 
+@csrf_exempt
 def webhook(request):
-    
-    logger.debug("deebug: the webhook request is: " + str(request.GET))
-    challengeValue = request.GET['hub.challenge']
+    logger.debug("deebug: request.GET is: " + str(request.GET))
     for k, v in request.GET.items():
-        logger.debug("deebug: k=" + str(k) + ", v=" + str(v))
-    return HttpResponse(challengeValue)
+        logger.debug("deebug: GET k=" + str(k) + ", v=" + str(v))
+    logger.debug("deebug: request.POST is: " + str(request.POST))
+    for k, v in request.POST.items():
+        logger.debug("deebug: POST k=" + str(k) + ", v=" + str(v))
+    return HttpResponse('ok')
 
 def magic(request):
     logger.debug("it's a magic msg")
