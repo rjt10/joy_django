@@ -9,6 +9,10 @@ logger = logging.getLogger(__name__)
 def home(request):
     return HttpResponse("Welcome to Joy 4!")
 
+def webhook(request):
+    logger.debug("the webhook request is: " + request)
+    return HttpResponse("Magic happen here.")
+
 def magic(request):
     logger.debug("it's a magic msg")
     return HttpResponse("Magic happen here.")
