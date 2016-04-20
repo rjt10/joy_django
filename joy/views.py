@@ -20,6 +20,12 @@ def webhook(request):
     logger.debug("request POST {}".format(request.POST))
     logger.debug("request body is {} {} {}".format(request.body, type(request.body), len(request.body)))
 
+    # handles subscription setup
+    hub_challenge = 'hub.challenge'
+    if hub_challenge in request.GET:
+        return HttpResponse(request.GET[hub_challenge])
+
+    # Handles the message callback
     if (len(request.body) > 0):
         body = json.loads(request.body.decode('utf-8'))
         key_entry = 'entry'
