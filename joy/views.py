@@ -26,8 +26,7 @@ def webhook(request):
     return HttpResponse('ok')
 
 def magic(request):
-    logger.debug("it's a magic msg")
-    return HttpResponse("Magic happen here.")
+    return HttpResponse("We will not steal your private data.")
 
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
