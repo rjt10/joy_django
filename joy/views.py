@@ -18,22 +18,23 @@ def webhook(request):
     logger.debug("request is {}".format(request))
     logger.debug("request GET {}".format(request.GET))
     logger.debug("request POST {}".format(request.POST))
-    logger.debug("request body is {}".format(request.body))
+    logger.debug("request body is {} {} {}".format(request.body, type(request.body), len(request.body)))
 
-    body = json.loads(request.body.decode('utf-8'))
-    key_entry = 'entry'
-    key_messaging = 'messaging'
-    if key_entry in body \
-            and len(body[key_entry]) == 1 \
-            and key_messaging in body[key_entry][0] \
-            and len(body[key_entry][0][key_messaging]) == 1:
-        msg = body[key_entry][0][key_messaging][0]
-        text = msg['message']['text'] if 'message' in msg and 'text' in msg['message'] else 'N/A'
-        sender_id = msg['sender']['id'] if 'sender' in msg and 'id' in msg['sender'] else 'N/A'
-        recipient_id = msg['recipient']['id'] if 'recipient' in msg and 'id' in msg['recipient'] else 'N/A'
-        logger.debug('deebug: text={}, sender={}, recipient={}'.format(text, sender_id, recipient_id))
+    if (len(request.body) > 0):
+        body = json.loads(request.body.decode('utf-8'))
+        key_entry = 'entry'
+        key_messaging = 'messaging'
+        if key_entry in body \
+                and len(body[key_entry]) == 1 \
+                and key_messaging in body[key_entry][0] \
+                and len(body[key_entry][0][key_messaging]) == 1:
+            msg = body[key_entry][0][key_messaging][0]
+            text = msg['message']['text'] if 'message' in msg and 'text' in msg['message'] else 'N/A'
+            sender_id = msg['sender']['id'] if 'sender' in msg and 'id' in msg['sender'] else 'N/A'
+            recipient_id = msg['recipient']['id'] if 'recipient' in msg and 'id' in msg['recipient'] else 'N/A'
+            logger.debug('deebug: text={}, sender={}, recipient={}'.format(text, sender_id, recipient_id))
     else:
-        logger.debug("unexpected request body {}".format(request.body))
+        logger.debug("unexpected request")
     return HttpResponse('ok 2')
 
 def magic(request):
