@@ -16,6 +16,8 @@ def home(request):
 @csrf_exempt
 def webhook(request):
     logger.debug("deebug: request is: " + str(request))
+    logger.debug("deebug: request GET is: " + str(request.GET))
+    logger.debug("deebug: request POST is: " + str(request.POST))
     logger.debug("deebug: request body is: " + str(request.body))
 
     body = json.loads(request.body.decode('utf-8'))
