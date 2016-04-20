@@ -21,7 +21,7 @@ def webhook(request):
     logger.debug("deebug: request body is: " + str(request.body))
 
     body = json.loads(request.body.decode('utf-8'))
-    text = body['entry'][0]['messaging'][0]['message']['text']
+    text = "empty msg" # body['entry'][0]['messaging'][0]['message']['text']
     sender_id = body['entry'][0]['messaging'][0]['sender']['id']
     recipient_id = body['entry'][0]['messaging'][0]['recipient']['id']
     logger.debug('deebug: text={}, sender={}, recipient={}'.format(text, sender_id, recipient_id))
