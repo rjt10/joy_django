@@ -15,17 +15,26 @@ def home(request):
 
 @csrf_exempt
 def webhook(request):
-    logger.debug("deebug: request is: " + str(request))
-    logger.debug("deebug: request GET is: " + str(request.GET))
-    logger.debug("deebug: request POST is: " + str(request.POST))
-    logger.debug("deebug: request body is: " + str(request.body))
+    logger.debug("request is {}".format(request))
+    logger.debug("request GET {}".format(request.GET))
+    logger.debug("request POST {}".format(request.POST))
+    logger.debug("request body is {}".format(request.body))
 
     body = json.loads(request.body.decode('utf-8'))
-    text = "empty msg" # body['entry'][0]['messaging'][0]['message']['text']
-    sender_id = body['entry'][0]['messaging'][0]['sender']['id']
-    recipient_id = body['entry'][0]['messaging'][0]['recipient']['id']
-    logger.debug('deebug: text={}, sender={}, recipient={}'.format(text, sender_id, recipient_id))
-    return HttpResponse('ok')
+    key_entry = 'entry'
+    key_messaging = 'messaging'
+    if key_entry in body \
+            and len(body[key_entry]) == 1 \
+            and key_messaging in body[key_entry][0] \
+            and len(body[key_entry][0][key_messaging]) == 1:
+        msg = body[key_entry][0][key_messaging][0]
+        text = msg['message']['text'] if 'message' in msg and 'text' in msg['message'] else 'N/A'
+        sender_id = msg['sender']['id'] if 'sender' in msg and 'id' in msg['sender'] else 'N/A'
+        recipient_id = msg['recipient']['id'] if 'recipient' in msg and 'id' in msg['recipient'] else 'N/A'
+        logger.debug('deebug: text={}, sender={}, recipient={}'.format(text, sender_id, recipient_id))
+    else:
+        logger.debug("unexpected request body {}".format(request.body))
+    return HttpResponse('ok 2')
 
 def magic(request):
     return HttpResponse("We will not steal your private data.")
