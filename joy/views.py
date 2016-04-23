@@ -44,8 +44,9 @@ def webhook(request):
             recipient = { "id": sender_id } 
             message = { "text": "you said: {}".format(text) }
             payload = { "recipient": recipient, "message": message}
-            r = requests.post(url, json=payload)
-            logger.debug('deebug: ', r.text)
+            if text != 'N/A': 
+                r = requests.post(url, json=payload)
+                logger.debug('deebug: ', r.text)
     else:
         logger.debug("unexpected request")
     return HttpResponse('ok 2')
