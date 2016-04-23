@@ -4,6 +4,7 @@ from joy.models import User, Group
 from joy.serializers import UserSerializer, GroupSerializer
 from django.http import HttpResponse
 from rest_framework import generics
+import requests
 
 import json
 import logging
@@ -39,6 +40,12 @@ def webhook(request):
             sender_id = msg['sender']['id'] if 'sender' in msg and 'id' in msg['sender'] else 'N/A'
             recipient_id = msg['recipient']['id'] if 'recipient' in msg and 'id' in msg['recipient'] else 'N/A'
             logger.debug('deebug: text={}, sender={}, recipient={}'.format(text, sender_id, recipient_id))
+            url="https://graph.facebook.com/v2.6/me/messages?access_token=CAAYhjFBc8g0BAEpHgVFfNjzrNkhgzEej6KShC5TcFKU03L1NMXp1r333AmfaFG7CxzoFQUuCoRX60GwerMgEo7JR21SEoLN2Tp58cLqkZAqdxU0Jp1KqMADzufxmQ4h1N0xqD0SD094gIAiKNdP89lLWae9LYpajMoVt23OU1CGVXjZAEzdF2eby79o1EZD"
+            recipient = { "id": sender_id } 
+            message = { "text": "you said: {}".format(text) }
+            payload = { "recipient": recipient, "message": message}
+            r = requests.post(url, json=payload)
+            logger.debug('deebug: ', r.text)
     else:
         logger.debug("unexpected request")
     return HttpResponse('ok 2')
