@@ -191,12 +191,12 @@ def webhook(request):
             sender_id = msg['sender']['id'] if 'sender' in msg and 'id' in msg['sender'] else 'N/A'
             recipient_id = msg['recipient']['id'] if 'recipient' in msg and 'id' in msg['recipient'] else 'N/A'
             logger.debug('deebug: text={}, sender={}, recipient={}'.format(text, sender_id, recipient_id))
-            if text != 'N/A':
-                session_id = sender_id
-                if session_id not in conv_contexts:
-                    conv_contexts[session_id] = {}
-                contexts = conv_contexts[session_id]
-                client.run_actions(session_id, text, contexts)
+            #if text != 'N/A':
+            #    session_id = sender_id
+            #    if session_id not in conv_contexts:
+            #        conv_contexts[session_id] = {}
+            #    contexts = conv_contexts[session_id]
+            #    client.run_actions(session_id, text, contexts)
     else:
         logger.debug("unexpected request")
     return HttpResponse('ok 2')
