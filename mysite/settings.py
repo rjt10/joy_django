@@ -32,7 +32,6 @@ ALLOWED_HOSTS = [
     'joy-dev.us-west-2.elasticbeanstalk.com',
     'www.petallabs.com',
     '.petallabs.com',
-    '.compute-1.amazonaws.com',
 ]
 
 
