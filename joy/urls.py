@@ -3,7 +3,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from joy import views
 
 urlpatterns = [
-    url(r'^$', views.home),
+    url(r'^$', views.index),
     url(r'^webhook$', views.webhook),
     url(r'^magic$', views.magic),
     url(r'^users/$', views.UserList.as_view()),

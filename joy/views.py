@@ -123,7 +123,7 @@ def handle_conversation(request):
         logger.debug("unexpected request")
     return HttpResponse('ok 2')
 
-def home(request):
+def index(request):
     return HttpResponse("Welcome to Joy 4!")
 
 @csrf_exempt
