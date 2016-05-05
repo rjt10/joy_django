@@ -146,6 +146,7 @@ def webhook(request):
 def magic(request):
     return handle_conversation(request)
 
+@csrf_exempt
 def watchdog(request):
     logger.debug("request is {}".format(request))
     logger.debug("request GET {}".format(request.GET))
