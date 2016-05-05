@@ -5,63 +5,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.2/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.2/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <title>React App</title>
 </head>
 <body>
-    <div id = "container"></div>
-    <div id = "container2">to be replaced</div>
+    <div id = 'content'>Content to be filled</div>
     <script type="text/babel" src="/static/scripts/example.js"></script>
-    <script type="text/babel"> 
-        var ParentComponent = React.createClass({
-            performMagic: function() {
-                alert('hello');
-            },
-            render: function() {
-                return <div><ChildComponent onMagicClick={this.performMagic} /></div>;
-            }
-        });
-        var ChildComponent = React.createClass({
-            render: function() {
-                return (
-                    <div>
-                        <div> The button click will do whatever you set me to do</div>
-                        <button onClick={this.props.onMagicClick}>Click for magic!</button>
-                    </div>
-                );
-            }
-        });
-        ReactDOM.render(
-            <ParentComponent />,
-            document.getElementById('container')
-        );
-
-        var CowClick  = React.createClass({
-            getInitialState: function() {
-                return {
-                    clicks: 0
-                }
-            },
-
-            onCowClick: function(evt) {
-                this.setState({
-                    clicks: this.state.clicks + 1
-                });
-            },
-
-            render: function() {
-                return (
-                    <div>
-                        <div>it has been clicked how many times?</div>
-                        <button onClick={this.onCowClick}>Click Me!</button>
-                        <div>{this.state.clicks} times!</div>
-                    </div>
-                );
-            } 
-        });
-        ReactDOM.render(
-            <CowClick />,
-            document.getElementById('container')
-        );
-    </script>
 </body>
 </html>

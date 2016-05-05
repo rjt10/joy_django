@@ -1,8 +1,10 @@
 from joy.models import User, Group
 from joy.serializers import UserSerializer, GroupSerializer
 from django.http import HttpResponse
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics
+import datetime
 import json
 import logging
 import requests
@@ -143,6 +145,25 @@ def webhook(request):
 @csrf_exempt
 def magic(request):
     return handle_conversation(request)
+
+def watchdog(request):
+    logger.debug("request is {}".format(request))
+    logger.debug("request GET {}".format(request.GET))
+    logger.debug("request POST {}".format(request.POST))
+    logger.debug("request body is {} {} {}".format(request.body, type(request.body), len(request.body)))
+    return HttpResponse("Thank you!")
+
+def comments(request):
+    author = {}
+    author['id'] = 1
+    author['author'] = 'Mike Mikeson'
+    author['text'] = 'this is the first comment at {}'.format(datetime.datetime.now())
+    author2 = {}
+    author2['id'] = 2
+    author2['author'] = 'John Johnson'
+    author2['text'] = 'this is the second comment at {}'.format(datetime.datetime.now())
+    resp = [author, author2]
+    return JsonResponse(resp, safe=False)
 
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
