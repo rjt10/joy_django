@@ -151,7 +151,7 @@ def watchdog(request):
     logger.debug("request is {}".format(request))
     logger.debug("request GET {}".format(request.GET))
     logger.debug("request POST {}".format(request.POST))
-    logger.debug("request body is {} {} {}".format(request.body, type(request.body), len(request.body)))
+    logger.debug("request body is {}".format(request.body))
     return HttpResponse("Thank you!")
 
 def comments(request):
