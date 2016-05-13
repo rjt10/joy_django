@@ -28,10 +28,10 @@ DEBUG = False
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    'www.petallabs.com',
-    '.petallabs.com',
     'joy-django-dev.us-east-1.elasticbeanstalk.com',
     'joy-dev.us-west-2.elasticbeanstalk.com',
+    'www.petallabs.com',
+    '.petallabs.com',
 ]
 
 

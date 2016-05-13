@@ -1,0 +1,1 @@
+aws iam upload-server-certificate --server-certificate-name godaddy-petal-full --certificate-body file:///Users/rjtang/8e9d46626e070adc.crt --private-key file:///Users/rjtang/privatekey.pem --certificate-chain file:///Users/rjtang/gd_bundle-g2-g1.crt

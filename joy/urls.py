@@ -3,8 +3,11 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from joy import views
 
 urlpatterns = [
-    url(r'^$', views.home),
+    url(r'^$', views.index),
+    url(r'^watchdog$', views.watchdog),
+    url(r'^webhook$', views.webhook),
     url(r'^magic$', views.magic),
+    url(r'^comments', views.comments),
     url(r'^users/$', views.UserList.as_view()),
     url(r'^users/(?P<pk>[0-9]+)/$', views.UserDetail.as_view()),
     url(r'^groups/$', views.GroupList.as_view()),
