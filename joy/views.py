@@ -9,6 +9,9 @@ import json
 import logging
 import requests
 
+GOOGLE_TRANSLATE_API_PATH = 'https://www.googleapis.com/language/translate/v2'
+GOOGLE_TRANSLATE_API_key = 'AIzaSyDy_5GEJfiwgj8BlR-_n_z7F6yVnn22aAc'
+
 WIT_API_HOST = 'https://api.wit.ai'
 WIT_ACCESS_TOKEN = 'C46EJ2YI4FBQU3FHUSYR2RJCH3DJRO6A'
 WIT_MAX_STEPS = 25
@@ -141,6 +144,15 @@ def webhook(request):
         return HttpResponse(request.GET[hub_challenge])
 
     return handle_conversation(request)
+
+def translate(request):
+    params = {'q': 'hello world'}
+    params['key'] = GOOGLE_TRANSLATE_API_key
+    params['source'] = 'en'
+    params['target'] = 'de'
+    r = requests.get(GOOGLE_TRANSLATE_API_PATH, params, headers={'referer': 'www.petellabs.com'})
+    logger.debug("translate resp is {}, json={}".format(r.status_code, r.json()))
+    return HttpResponse("Welcome to translate!")
 
 @csrf_exempt
 def magic(request):
