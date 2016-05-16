@@ -152,7 +152,11 @@ def translate(request):
     params['target'] = 'de'
     r = requests.get(GOOGLE_TRANSLATE_API_PATH, params, headers={'referer': 'www.petellabs.com'})
     logger.debug("translate resp is {}, json={}".format(r.status_code, r.json()))
-    return HttpResponse("Welcome to translate!")
+    if r.status_code == 200:
+        r2 = r.json()
+        return JsonResponse(r2)
+    else:
+        return JsonResponse({status: -1})
 
 @csrf_exempt
 def magic(request):
