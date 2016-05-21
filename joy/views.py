@@ -2,6 +2,7 @@ from joy.models import User, Group
 from joy.serializers import UserSerializer, GroupSerializer
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics
 import datetime
@@ -146,6 +147,10 @@ def webhook(request):
     return handle_conversation(request)
 
 def translate(request):
+    context = {}
+    return render(request, 'joy/translate.html', context)
+
+def translate_api(request):
     logger.debug("request is {}".format(request))
     logger.debug("request GET {}".format(request.GET))
     if 'src' in request.GET and 'tgt' in request.GET and 'txt' in request.GET:

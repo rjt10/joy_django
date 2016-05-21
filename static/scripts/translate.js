@@ -15,7 +15,7 @@ var TranslationBox = React.createClass({
         console.log('translationReq:' + JSON.stringify(translationReq));
         $.ajax({
             method: 'GET',
-            url: '/joy/translate',
+            url: '/joy/translate_api',
             data: translationReq,
             cache: false,
             success: function(data) {
