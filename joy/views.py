@@ -146,17 +146,21 @@ def webhook(request):
     return handle_conversation(request)
 
 def translate(request):
-    params = {'q': 'hello world'}
-    params['key'] = GOOGLE_TRANSLATE_API_key
-    params['source'] = 'en'
-    params['target'] = 'de'
-    r = requests.get(GOOGLE_TRANSLATE_API_PATH, params, headers={'referer': 'www.petellabs.com'})
-    logger.debug("translate resp is {}, json={}".format(r.status_code, r.json()))
-    if r.status_code == 200:
-        r2 = r.json()
-        return JsonResponse(r2)
-    else:
-        return JsonResponse({status: -1})
+    logger.debug("request is {}".format(request))
+    logger.debug("request GET {}".format(request.GET))
+    if 'src' in request.GET and 'tgt' in request.GET and 'txt' in request.GET:
+        params = { 'key': GOOGLE_TRANSLATE_API_key }
+        params['source'] = request.GET['src']
+        params['target'] = request.GET['tgt']
+        params['q'] = request.GET['txt']
+        logger.debug("deebug: params={}".format(params))
+        r = requests.get(GOOGLE_TRANSLATE_API_PATH, params, headers={'referer': 'www.petellabs.com'})
+        logger.debug("translate resp is {}, json={}".format(r.status_code, r.json()))
+        if r.status_code == 200:
+            r2 = r.json()
+            return JsonResponse(r2)
+    
+    return JsonResponse({status: -1})
 
 @csrf_exempt
 def magic(request):
