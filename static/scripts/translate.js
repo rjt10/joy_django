@@ -94,7 +94,9 @@ var TranslationForm = React.createClass({
     },
 
     handleSrcChange: function(e) {
+        console.log('deebug src before : ' + JSON.stringify(this.state))
         this.setState({src: e.target.value});
+        console.log('deebug after src: ' + JSON.stringify(this.state))
     },
 
     handleTgtChange: function(e) {
@@ -117,13 +119,13 @@ var TranslationForm = React.createClass({
     render: function () {
         return (
             <form className='translationForm' onSubmit={this.handleSubmit}>
-                <select value="en" onChange={this.handleSrcChange}>
+                <select value={this.state.src} onChange={this.handleSrcChange}>
                     <option value="es">Spanish</option>
                     <option value="en">English</option>
                     <option value="zh-CN">Chinese</option>
                 </select>
                 <input type="text" placeholder="Say something..." value={this.state.txt} onChange={this.handleTxtChange} />
-                <select value="es" onChange={this.handleTgtChange}>
+                <select value={this.state.tgt} onChange={this.handleTgtChange}>
                     <option value="es">Spanish</option>
                     <option value="en">English</option>
                     <option value="zh-CN">Chinese</option>
