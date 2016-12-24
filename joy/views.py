@@ -126,7 +126,7 @@ def handle_conversation(request):
     return HttpResponse('ok 2')
 
 def index(request):
-    return HttpResponse("Welcome to Joy 4!")
+    return HttpResponse("Welcome to Joy 0.2!")
 
 @csrf_exempt
 def webhook(request):
