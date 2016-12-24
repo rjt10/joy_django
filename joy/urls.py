@@ -7,6 +7,8 @@ urlpatterns = [
     url(r'^watchdog$', views.watchdog),
     url(r'^webhook$', views.webhook),
     url(r'^magic$', views.magic),
+    url(r'^translate$', views.translate),
+    url(r'^translate_api$', views.translate_api),
     url(r'^comments', views.comments),
     url(r'^users/$', views.UserList.as_view()),
     url(r'^users/(?P<pk>[0-9]+)/$', views.UserDetail.as_view()),

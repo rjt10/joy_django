@@ -2,12 +2,16 @@ from joy.models import User, Group
 from joy.serializers import UserSerializer, GroupSerializer
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics
 import datetime
 import json
 import logging
 import requests
+
+GOOGLE_TRANSLATE_API_PATH = 'https://www.googleapis.com/language/translate/v2'
+GOOGLE_TRANSLATE_API_key = 'AIzaSyDy_5GEJfiwgj8BlR-_n_z7F6yVnn22aAc'
 
 WIT_API_HOST = 'https://api.wit.ai'
 WIT_ACCESS_TOKEN = 'C46EJ2YI4FBQU3FHUSYR2RJCH3DJRO6A'
@@ -141,6 +145,27 @@ def webhook(request):
         return HttpResponse(request.GET[hub_challenge])
 
     return handle_conversation(request)
+
+def translate(request):
+    context = {}
+    return render(request, 'joy/translate.html', context)
+
+def translate_api(request):
+    logger.debug("request is {}".format(request))
+    logger.debug("request GET {}".format(request.GET))
+    if 'src' in request.GET and 'tgt' in request.GET and 'txt' in request.GET:
+        params = { 'key': GOOGLE_TRANSLATE_API_key }
+        params['source'] = request.GET['src']
+        params['target'] = request.GET['tgt']
+        params['q'] = request.GET['txt']
+        logger.debug("deebug: params={}".format(params))
+        r = requests.get(GOOGLE_TRANSLATE_API_PATH, params, headers={'referer': 'www.petellabs.com'})
+        logger.debug("translate resp is {}, json={}".format(r.status_code, r.json()))
+        if r.status_code == 200:
+            r2 = r.json()
+            return JsonResponse(r2)
+    
+    return JsonResponse({status: -1})
 
 @csrf_exempt
 def magic(request):
