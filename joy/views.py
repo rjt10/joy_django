@@ -10,6 +10,8 @@ import json
 import logging
 import requests
 
+CHARLIE_PAGE_TOKEN = 'EAARA5D9ibB8BAO0QZB3hJVzBQQUhMtl3qauAKZBWeQZCF0Qs6CqIAZAW5vrXtsxRSZBnFJEoTuNCRmZB4zTYxl6ZAzjug2BPzdhL0CisxASKoP6HDw1ZC6Yb6DcgzXz8lhphMcxQaFgzkZAX21YrsBDxEb8xtlCoH8gk7IzZB9wHdhDQZDZD'
+
 GOOGLE_TRANSLATE_API_PATH = 'https://www.googleapis.com/language/translate/v2'
 GOOGLE_TRANSLATE_API_key = 'AIzaSyDy_5GEJfiwgj8BlR-_n_z7F6yVnn22aAc'
 
@@ -134,10 +136,10 @@ def index(request):
 
 @csrf_exempt
 def webhook(request):
-    logger.debug("request is {}".format(request))
-    logger.debug("request GET {}".format(request.GET))
-    logger.debug("request POST {}".format(request.POST))
-    logger.debug("request body is {} {} {}".format(request.body, type(request.body), len(request.body)))
+    logger.debug("deebug request is {}".format(request))
+    logger.debug("deebug request GET {}".format(request.GET))
+    logger.debug("deebug request POST {}".format(request.POST))
+    logger.debug("deebug request body is {} {} {}".format(request.body, type(request.body), len(request.body)))
 
     # handles subscription setup
     hub_challenge = 'hub.challenge'
@@ -164,7 +166,7 @@ def translate_api(request):
         if r.status_code == 200:
             r2 = r.json()
             return JsonResponse(r2)
-    
+
     return JsonResponse({status: -1})
 
 @csrf_exempt
