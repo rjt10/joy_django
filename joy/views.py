@@ -10,7 +10,7 @@ import json
 import logging
 import requests
 
-VERSION = "0.2.1"
+VERSION = "0.3.0"
 
 CHARLIE_PAGE_ACCESS_TOKEN = 'EAARA5D9ibB8BAO0QZB3hJVzBQQUhMtl3qauAKZBWeQZCF0Qs6CqIAZAW5vrXtsxRSZBnFJEoTuNCRmZB4zTYxl6ZAzjug2BPzdhL0CisxASKoP6HDw1ZC6Yb6DcgzXz8lhphMcxQaFgzkZAX21YrsBDxEb8xtlCoH8gk7IzZB9wHdhDQZDZD'
 POST_PAGE_MSG_URL = "https://graph.facebook.com/v2.6/me/messages?access_token={}".format(CHARLIE_PAGE_ACCESS_TOKEN)
