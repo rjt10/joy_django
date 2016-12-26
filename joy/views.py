@@ -126,7 +126,7 @@ def translate_text(text):
         logger.debug('deebug: translate response is {}'.format(translated_text['es']))
     logger.debug('deebug: translatedText is {}'.format(translated_text))
     # for now just return the same thing
-    return "中文：[{}] Espanal: [{}]".format(translated_text['zh-CN'], translated_text['es'])
+    return "中文：[{}] Espanol: [{}]".format(translated_text['zh-CN'], translated_text['es'])
 #
 # Below are some legacy code for building the Joy app and handling wit conversation
 #
