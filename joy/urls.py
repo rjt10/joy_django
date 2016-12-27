@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^$', views.index),
     url(r'^watchdog$', views.watchdog),
     url(r'^webhook$', views.webhook),
+    url(r'^privacypolicy$', views.privacypolicy),
     url(r'^magic$', views.magic),
     url(r'^translate$', views.translate),
     url(r'^translate_api$', views.translate_api),

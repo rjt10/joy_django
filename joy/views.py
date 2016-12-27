@@ -34,6 +34,10 @@ def index(request):
     context = {}
     return render(request, 'joy/index.html', context)
 
+def privacypolicy(request):
+    context = {}
+    return render(request, 'joy/privacypolicy.html', context)
+
 @csrf_exempt
 def webhook(request):
     """Handles FB Messenger input.
