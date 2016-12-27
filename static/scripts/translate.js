@@ -1,12 +1,12 @@
 let translationUnitId = 1;
 
 var TranslationBox = React.createClass({
-    // 
+    //
     // Example state:
     //   {"translations":[
     //     {"translatedText":"Hola Mundo"}
     //   ]}
-    // 
+    //
     getInitialState: function () {
         return { data: {}}
     },

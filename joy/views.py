@@ -31,7 +31,8 @@ class MsgFromFBPage:
         self.text = text
 
 def index(request):
-    return HttpResponse("Welcome to Charlie T.A. {}!".format(VERSION))
+    context = {}
+    return render(request, 'joy/index.html', context)
 
 @csrf_exempt
 def webhook(request):
