@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^webhook$', views.webhook),
     url(r'^privacypolicy$', views.privacypolicy),
     url(r'^magic$', views.magic),
+    url(r'^paa$', views.paa),
     #url(r'^translate$', views.translate),
     #url(r'^translate_api$', views.translate_api),
     #url(r'^comments', views.comments),

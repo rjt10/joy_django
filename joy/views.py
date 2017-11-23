@@ -18,6 +18,11 @@ POST_PAGE_MSG_URL = "https://graph.facebook.com/v2.6/me/messages?access_token={}
 GOOGLE_TRANSLATE_API_PATH = 'https://www.googleapis.com/language/translate/v2'
 GOOGLE_TRANSLATE_API_key = 'AIzaSyDy_5GEJfiwgj8BlR-_n_z7F6yVnn22aAc'
 
+AWS_PAA_URL = "webservices.amazon.com/onca/xml"
+AWS_ASSOCIATE_TAG = "glide00-20"
+AWS_ACCESS_KEY_ID = "AKIAIEICQE7BVGUY5KPQ"
+AWS_ACCESS_SECRET_KEY = "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"
+
 logger = logging.getLogger(__name__)
 
 class WitError(Exception):
@@ -37,6 +42,20 @@ def index(request):
 def privacypolicy(request):
     context = {}
     return render(request, 'joy/privacypolicy.html', context)
+
+@csrf_exempt
+def paa(request):
+    params = {
+        "Service": "AWSECommerceService",
+        "AWSAccessKeyId": AWS_ACCESS_KEY_ID,
+        "AssociateTag": AWS_ASSOCIATE_TAG,
+        "Operation": "ItemSearch",
+        "SearchIndex": "All",
+        "Keywords": "diamond",
+        "ResponseGroup": "Images,ItemAttributes,Offers"
+    }
+    resp = requests.get(GOOGLE_TRANSLATE_API_PATH, params=params, headers={'referer': 'www.petellabs.com'})
+    return HttpResponse('ok 2')
 
 @csrf_exempt
 def webhook(request):
